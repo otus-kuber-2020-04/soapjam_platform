@@ -1,6 +1,3 @@
-# soapjam_platform
-soapjam platform repository
-
 # Выполнено ДЗ № 1
 
  - [x] Основное ДЗ
