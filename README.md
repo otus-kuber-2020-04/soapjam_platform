@@ -1,2 +1,2 @@
 # soapjam_platform
-soapjam Platform repository
+soapjam platform repository

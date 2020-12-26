@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  containers:
+  - name: web
+    image: soapj/otus.homework1.kubernetes-intro.web:latest
+    volumeMounts:
+    - name: app
+      mountPath: /app
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "64Mi"
+        cpu: "250m"
+  initContainers:
+  - name: init-container
+    image: busybox:1.31
+    volumeMounts:
+    - name: app
+      mountPath: /app
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "64Mi"
+        cpu: "250m"
+    command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
+  volumes:
+    - name: app
+      emptyDir: {}
