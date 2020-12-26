@@ -22,9 +22,9 @@ https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/kubernetes
 
 ## Как запустить проект:
  - Поднять локальный кластер командой:
-```minikube start```
-- Задеплоить под web в кластер, для этого в директории kubernetes-intro запустить команду:
-```kubectl apply -f web-pod.yaml```
+ ```minikube start```
+ - Задеплоить под web в кластер, для этого в директории kubernetes-intro запустить команду:
+ ```kubectl apply -f web-pod.yaml```
 
 ## Как проверить работоспособность:
  - Пробросить порт приложения себе на локальную машину:
