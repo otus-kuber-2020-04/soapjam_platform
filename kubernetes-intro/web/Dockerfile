@@ -7,7 +7,7 @@ RUN apk add --no-cache shadow \
 RUN  mkdir /app
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./app.conf /etc/nginx/conf.d/app.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY ./index.html /app
 
 EXPOSE 8000
