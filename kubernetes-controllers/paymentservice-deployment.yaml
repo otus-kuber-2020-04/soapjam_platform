@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+  labels:
+    app: paymentservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: paymentservice
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+    spec:
+      containers:
+        - name: server
+          image: soapj/otus.homework2.kubernetes-intro.paymentservice:v0.0.2
+          resources:
+            requests:
+              memory: 32Mi
+              cpu: 250m
+            limits:
+              memory: 256Mi
+              cpu: 500m
