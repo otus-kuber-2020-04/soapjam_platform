@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: web-ingress-live
+  namespace: live
+spec:
+  rules:
+  - host: canary-test
+    http:
+      paths:
+        - backend:
+            serviceName: web-svc-live
+            servicePort: 8000

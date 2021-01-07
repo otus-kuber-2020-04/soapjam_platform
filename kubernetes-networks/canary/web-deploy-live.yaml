@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-live
+  namespace: live
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-live
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+      maxSurge: 0
+  template:
+    metadata:
+      labels:
+        app: web-live
+    spec:
+      containers:
+      - name: web-live
+        image: soapj/otus.homework1.kubernetes-intro.web:latest
+        livenessProbe:
+          tcpSocket:
+            port: 8000
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 8000
+        volumeMounts:
+        - name: app
+          mountPath: /app
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+      initContainers:
+      - name: init-container
+        image: busybox:1.31
+        volumeMounts:
+        - name: app
+          mountPath: /app
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+        command: ['sh', '-c', 'wget -O- https://bit.ly/otus-k8s-index-gen | sh']
+      volumes:
+        - name: app
+          emptyDir: {}
