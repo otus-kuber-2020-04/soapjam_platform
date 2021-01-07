@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: canary
+  labels:
+    name: canary
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: live
+  labels:
+    name: live
